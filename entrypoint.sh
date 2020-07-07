@@ -5,16 +5,11 @@ if [ ! -f "/etc/apache2/mellon/${OUTFILE}.key" ] || [ ! -f "/etc/apache2/mellon/
 fi
 
 if [ ! -f "/etc/apache2/mellon/idp-metadata.xml" ]; then
-    wget ${SAML_METADATA_URL} -O /etc/apache2/mellon/idp-metadata.xml
+    /tmp/ -O /etc/apache2/mellon/idp-metadata.xml
 fi
 
 sed -e "s|&DOMAIN&|${DOMAIN}|g" /tmp/certbot-000-default.conf.template > /etc/apache2/sites-available/000-default.conf
 
-apachectl start
-if [ ! -f "/etc/letsencrypt/live/${DOMAIN}/chain.pem" ] || [ ! -f "/etc/letsencrypt/live/${DOMAIN}/privkey.pem" ] || [ ! -f "/etc/letsencrypt/live/${DOMAIN}/cert.pem" ]; then
-    certbot certonly --apache --non-interactive --email ${CERTBOT_EMAIL} --agree-tos --domains ${DOMAIN} --webroot-path /var/www/html
-fi
-apachectl stop
 
 service cron start
 
