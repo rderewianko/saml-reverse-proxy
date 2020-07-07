@@ -13,9 +13,9 @@
   ServerName &DOMAIN&
   
   
-  SSLCertificateKeyFile "/etc/letsencrypt/live/&DOMAIN&/privkey.pem"
-  SSLCertificateChainFile "/etc/letsencrypt/live/&DOMAIN&/chain.pem"
-  SSLCertificateFile "/etc/letsencrypt/live/&DOMAIN&/cert.pem"
+  SSLCertificateKeyFile "/etc/ssl/&DOMAIN&/privkey.key"
+  SSLCertificateChainFile "/etc/ssl/&DOMAIN&/chain.crt"
+  SSLCertificateFile "/etc/ssl/&DOMAIN&/cert.pem"
   SSLEngine on
   SetEnv HTTPS on
   SSLProxyEngine on
